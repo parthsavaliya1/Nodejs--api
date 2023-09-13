@@ -13,10 +13,11 @@ require("./config/database.config");
 
 const productController = require("./controller/product.controller");
 const categoryController = require("./controller/category.controller");
-const userController = require('./controller/user.controller')
+const userController = require('./controller/user.controller');
+const authenticateToken = require('./config/authentication');
 
-app.use("/api/product", productController);
-app.use("/api/category", categoryController);
+app.use("/api/product",authenticateToken, productController);
+app.use("/api/category",authenticateToken, categoryController);
 app.use("/api/user", userController);
 
 
